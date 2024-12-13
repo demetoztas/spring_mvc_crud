@@ -32,7 +32,8 @@
             <td th:text="${student.enrolledcourse}"></td>
             <td>
                 <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a> |
-                <a href="#" onclick="confirmDelete(this)" data-href="@{/students/delete/{id}(id=${student.id})}" class="delete-btn">Delete</a>
+                <a href="#" th:attr="data-href=@{/students/delete/{id}(id=${student.id})}" onclick="confirmDelete(this)" class="delete-btn">Delete</a>
+            </td>
             </td>
         </tr>
         </tbody>
@@ -60,4 +61,5 @@
             }
         });
     }
+
 </script>

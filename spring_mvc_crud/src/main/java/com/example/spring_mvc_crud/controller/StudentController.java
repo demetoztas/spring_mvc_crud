@@ -65,13 +65,17 @@ public class StudentController {
 
 
 
+
     @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
-        if (studentService.getStudentById(id) != null) { // Null kontrolü
-            studentService.deleteStudent(id); // Öğrenciyi sil
+        Student existingStudent = studentService.getStudentById(id);
+        if (existingStudent == null) {
+            return "redirect:/students?error=notfound"; // Öğrenci bulunamazsa hata mesajı
         }
-        return "redirect:/students"; // Liste sayfasına yönlendirme
+        studentService.deleteStudent(id);
+        return "redirect:/students";
     }
+
 
 }
 
